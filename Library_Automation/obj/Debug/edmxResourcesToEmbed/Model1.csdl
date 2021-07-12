@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryAutomationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Calisan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Yas" Type="Int32" Nullable="false" />
+    <Property Name="CinsiyetE" Type="Boolean" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kiralama" Relationship="Self.FK_Kiralama_Calisan" FromRole="Calisan" ToRole="Kiralama" />
+  </EntityType>
+  <EntityType Name="Kiralama">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KitapId" Type="Int32" Nullable="false" />
+    <Property Name="CalisanId" Type="Int32" Nullable="false" />
+    <Property Name="MusteriId" Type="Int32" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Aktif" Type="Boolean" />
+    <NavigationProperty Name="Calisan" Relationship="Self.FK_Kiralama_Calisan" FromRole="Kiralama" ToRole="Calisan" />
+    <NavigationProperty Name="Kitap" Relationship="Self.FK_Kiralama_Kitap" FromRole="Kiralama" ToRole="Kitap" />
+    <NavigationProperty Name="Musteri" Relationship="Self.FK_Kiralama_Musteri" FromRole="Kiralama" ToRole="Musteri" />
+  </EntityType>
+  <EntityType Name="Kitap">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="60" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Yazar" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="BasimTarihi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BaskiSayisi" Type="Int32" Nullable="false" />
+    <Property Name="Stok" Type="Int32" Nullable="false" />
+    <Property Name="MusaitStok" Type="Int32" Nullable="false" />
+    <Property Name="TurId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kiralama" Relationship="Self.FK_Kiralama_Kitap" FromRole="Kitap" ToRole="Kiralama" />
+    <NavigationProperty Name="KitapTur" Relationship="Self.FK_Kitap_KitapTur" FromRole="Kitap" ToRole="KitapTur" />
+  </EntityType>
+  <EntityType Name="KitapTur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kitap" Relationship="Self.FK_Kitap_KitapTur" FromRole="KitapTur" ToRole="Kitap" />
+  </EntityType>
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CinsiyetE" Type="Boolean" Nullable="false" />
+    <Property Name="Meslek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Yas" Type="Int32" Nullable="false" />
+    <Property Name="Ceza" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Kiralama" Relationship="Self.FK_Kiralama_Musteri" FromRole="Musteri" ToRole="Kiralama" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Kiralama_Calisan">
+    <End Role="Calisan" Type="Self.Calisan" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Calisan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="CalisanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kiralama_Kitap">
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kitap">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="KitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kiralama_Musteri">
+    <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="MusteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kitap_KitapTur">
+    <End Role="KitapTur" Type="Self.KitapTur" Multiplicity="1" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KitapTur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="TurId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryAutomationEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="Calisan" EntityType="Self.Calisan" />
+    <EntitySet Name="Kiralama" EntityType="Self.Kiralama" />
+    <EntitySet Name="Kitap" EntityType="Self.Kitap" />
+    <EntitySet Name="KitapTur" EntityType="Self.KitapTur" />
+    <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Kiralama_Calisan" Association="Self.FK_Kiralama_Calisan">
+      <End Role="Calisan" EntitySet="Calisan" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kiralama_Kitap" Association="Self.FK_Kiralama_Kitap">
+      <End Role="Kitap" EntitySet="Kitap" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kiralama_Musteri" Association="Self.FK_Kiralama_Musteri">
+      <End Role="Musteri" EntitySet="Musteri" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kitap_KitapTur" Association="Self.FK_Kitap_KitapTur">
+      <End Role="KitapTur" EntitySet="KitapTur" />
+      <End Role="Kitap" EntitySet="Kitap" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

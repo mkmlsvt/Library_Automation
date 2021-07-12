@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryAutomationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Calisan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Yas" Type="int" Nullable="false" />
+    <Property Name="CinsiyetE" Type="bit" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kiralama">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapId" Type="int" Nullable="false" />
+    <Property Name="CalisanId" Type="int" Nullable="false" />
+    <Property Name="MusteriId" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" Nullable="false" />
+    <Property Name="Aktif" Type="bit" />
+  </EntityType>
+  <EntityType Name="Kitap">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nchar" MaxLength="60" Nullable="false" />
+    <Property Name="Yazar" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="BasimTarihi" Type="date" Nullable="false" />
+    <Property Name="BaskiSayisi" Type="int" Nullable="false" />
+    <Property Name="Stok" Type="int" Nullable="false" />
+    <Property Name="MusaitStok" Type="int" Nullable="false" />
+    <Property Name="TurId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KitapTur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CinsiyetE" Type="bit" Nullable="false" />
+    <Property Name="Meslek" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Yas" Type="int" Nullable="false" />
+    <Property Name="Ceza" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Kiralama_Calisan">
+    <End Role="Calisan" Type="Self.Calisan" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Calisan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="CalisanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kiralama_Kitap">
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kitap">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="KitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kiralama_Musteri">
+    <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="MusteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kitap_KitapTur">
+    <End Role="KitapTur" Type="Self.KitapTur" Multiplicity="1" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KitapTur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="TurId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryAutomationModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Calisan" EntityType="Self.Calisan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kiralama" EntityType="Self.Kiralama" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kitap" EntityType="Self.Kitap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KitapTur" EntityType="Self.KitapTur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kiralama_Calisan" Association="Self.FK_Kiralama_Calisan">
+      <End Role="Calisan" EntitySet="Calisan" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kiralama_Kitap" Association="Self.FK_Kiralama_Kitap">
+      <End Role="Kitap" EntitySet="Kitap" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kiralama_Musteri" Association="Self.FK_Kiralama_Musteri">
+      <End Role="Musteri" EntitySet="Musteri" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kitap_KitapTur" Association="Self.FK_Kitap_KitapTur">
+      <End Role="KitapTur" EntitySet="KitapTur" />
+      <End Role="Kitap" EntitySet="Kitap" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

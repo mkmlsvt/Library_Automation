@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97DADE5F-151F-4DB7-AA4D-8E39F8B99108}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Library_Automation</RootNamespace>
+    <AssemblyName>Library_Automation</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Business\AdminBusiness.cs" />
+    <Compile Include="Business\CalisanBusiness.cs" />
+    <Compile Include="Business\KiralamaBusiness.cs" />
+    <Compile Include="Business\KitapBusiness.cs" />
+    <Compile Include="Business\KitapTurBusiness.cs" />
+    <Compile Include="Business\MusteriBusiness.cs" />
+    <Compile Include="Calisan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AdminData.cs" />
+    <Compile Include="Data\CalisanData.cs" />
+    <Compile Include="Data\KiralamaData.cs" />
+    <Compile Include="Data\KitapData.cs" />
+    <Compile Include="Data\KitapTurData.cs" />
+    <Compile Include="Data\MusteriData.cs" />
+    <Compile Include="DTO\CalisanListDTO.cs" />
+    <Compile Include="DTO\KitapListDTO.cs" />
+    <Compile Include="DTO\MusteriDTO.cs" />
+    <Compile Include="Forms\frmChooseLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmChooseLogin.Designer.cs">
+      <DependentUpon>frmChooseLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEmployeeHomepage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEmployeeHomepage.Designer.cs">
+      <DependentUpon>frmEmployeeHomepage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmKıtapIslemlerı.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmKıtapIslemlerı.Designer.cs">
+      <DependentUpon>frmKıtapIslemlerı.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLoginAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLoginAdmin.Designer.cs">
+      <DependentUpon>frmLoginAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLoginEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLoginEmployee.Designer.cs">
+      <DependentUpon>frmLoginEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmManageEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmManageEmployee.Designer.cs">
+      <DependentUpon>frmManageEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMusteriVeKirala.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMusteriVeKirala.Designer.cs">
+      <DependentUpon>frmMusteriVeKirala.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kiralama.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kitap.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KitapTur.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Musteri.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\frmChooseLogin.resx">
+      <DependentUpon>frmChooseLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEmployeeHomepage.resx">
+      <DependentUpon>frmEmployeeHomepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmKıtapIslemlerı.resx">
+      <DependentUpon>frmKıtapIslemlerı.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLoginAdmin.resx">
+      <DependentUpon>frmLoginAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLoginEmployee.resx">
+      <DependentUpon>frmLoginEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmManageEmployee.resx">
+      <DependentUpon>frmManageEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMusteriVeKirala.resx">
+      <DependentUpon>frmMusteriVeKirala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bo_position_v92.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contacts_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manager_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_16x161.png" />
+    <None Include="Resources\list_32x321.png" />
+    <None Include="Resources\additem_16x16.png" />
+    <None Include="Resources\additem_32x32.png" />
+    <None Include="Resources\list_16x16.png" />
+    <None Include="Resources\list_32x32.png" />
+    <None Include="Resources\remove_16x16.png" />
+    <None Include="Resources\remove_32x321.png" />
+    <None Include="Resources\recurrence_16x16.png" />
+    <None Include="Resources\recurrence_32x32.png" />
+    <None Include="Resources\add_16x16.png" />
+    <None Include="Resources\add_32x321.png" />
+    <None Include="Resources\reading_16x16.png" />
+    <None Include="Resources\reading_32x32.png" />
+    <None Include="Resources\publicfix_16x16.png" />
+    <None Include="Resources\publicfix_32x32.png" />
+    <None Include="Resources\web_32x323.png" />
+    <None Include="Resources\web_32x322.png" />
+    <None Include="Resources\web_32x321.png" />
+    <None Include="Resources\web_32x32.png" />
+    <None Include="Resources\add_book_120px.png" />
+    <None Include="Resources\add_book_50px.png" />
+    <None Include="Resources\book_and_pencil_50px.png" />
+    <None Include="Resources\remove_book_50px.png" />
+    <None Include="Resources\book_Stok_50px.png" />
+    <None Include="Resources\remove_32x32.png" />
+    <None Include="Resources\add_32x32.png" />
+    <None Include="Resources\tag_32x32.png" />
+    <None Include="Resources\HomePageImage.jpg" />
+    <None Include="Resources\lock_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\web_32x324.png" />
+    <None Include="Resources\about_16x16.png" />
+    <None Include="Resources\about_32x32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>
